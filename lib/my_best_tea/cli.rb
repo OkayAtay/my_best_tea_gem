@@ -6,7 +6,7 @@ class CLI
   attr_accessor :input
 
   def call
-    Scraper.scrape_from_index_page
+    Scraper.scrape_tea_page
     puts ""
     puts "Welcome to My Best Tea!"
     puts ""

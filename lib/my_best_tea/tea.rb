@@ -7,9 +7,18 @@ class Tea
 attr_accessor :name, :url, :description, :preparation, :subtypes
 @@all = []
 
-  def initialize(name)
+  def initialize(name, url)
     @name = name
+    @url = url
     @@all << self
+  end
+
+  def self.create_from_collection(tea_array)
+
+  end
+
+  def add_tea_attributes(tea_attributes_hash)
+
   end
 
   def self.all
