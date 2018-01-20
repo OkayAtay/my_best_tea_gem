@@ -4,7 +4,7 @@ require 'nokogiri'
 
 class Scraper
 
-attr_accessor :name, :description, :preparation, :subtypes
+attr_accessor :name, :url, :description, :preparation, :subtypes
 
   def self.scrape_from_index_page
     tea_list = []
@@ -12,10 +12,9 @@ attr_accessor :name, :description, :preparation, :subtypes
     tea_list = doc.search(".row .col-4 h3").text.downcase.split(' tea')
     tea_list.each do |tea|
       Tea.new(tea)
+      tea[:url] = doc.search(".row .col-4 a").attribute("href").value
     end
+    binding.pry
   end
 
-  def self.create_from_index_page(teas)
-    teas.each do |tea| Tea.new(tea) end
-  end
 end

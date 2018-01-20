@@ -4,7 +4,7 @@ require 'net/http'
 
 class Tea
 
-attr_accessor :name, :description, :preparation, :subtypes
+attr_accessor :name, :url, :description, :preparation, :subtypes
 @@all = []
 
   def initialize(name)
