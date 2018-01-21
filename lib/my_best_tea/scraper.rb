@@ -10,12 +10,17 @@ attr_accessor :name, :url, :description, :preparation, :subtypes
   def self.scrape_from_index_page
     tea_list = []
     doc = Nokogiri::HTML(open('https://www.mightyleaf.com/tea-knowledge/types-of-tea'))
+    #tea_list = doc.search(".row .col-4 h3").text.downcase.split(/(?=w)/)
     tea_list = doc.search(".row .col-4 h3").text.downcase.split(' tea')
-    tea = {}
+    tea_list.map!{|t| t=='matchawhite' ? t.split(/(?=w)/): t}.flatten
+    #tea_list.map! {|tea| tea == 'matchawhite' tea.split(/(?=w)/)}
+    #tea_list = tea_list.split(' tea')
+    tea_list
+    i=0
     tea_list.each do |tea|
-      url = doc.search(".row .col-4 a").attribute("href").value
+      url = doc.search(".row .col-4 a")[i].attribute("href").value
       Tea.new(tea, url)
-    binding.pry
+      i+=2
     end
   end
 
