@@ -15,17 +15,17 @@ attr_accessor :name, :url, :description, :preparation, :subtypes
     tea_list.each do |tea|
       url = doc.search(".row .col-4 a").attribute("href").value
       Tea.new(tea, url)
+    binding.pry
     end
   end
 
-  def self.scrape_tea_page
-    tea_page = Nokogiri::HTML(open('https://www.mightyleaf.com/tea-knowledge/types-of-tea/black-tea'))
-
-      tea_description = tea_page.css(".col-main .std p")[0].text + tea_page.css(".col-main .std p")[1].text
-      tea_preparartion = tea_page.css(".col-main .std p")[2].text + tea_page.css(".col-main .std ul").text
-    binding.pry
-    #.col-main .std p.first
+  def self.create_tea_from_url
+    Tea.all.each do |tea|
+      tea_page = Nokogiri::HTML(open(tea.url))
+        tea.description = tea_page.css(".col-main .std p")[0..1].text,
+        tea.preparation = tea_page.css(".col-main .std p")[2].text + tea_page.css(".col-main .std ul").text,
+        tea.subtypes = tea_page.css(".col-main .std p")[5..9].text
+    end
   end
-
 
 end

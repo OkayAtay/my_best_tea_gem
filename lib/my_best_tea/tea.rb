@@ -17,8 +17,10 @@ attr_accessor :name, :url, :description, :preparation, :subtypes
 
   end
 
-  def add_tea_attributes(tea_attributes_hash)
-
+  def self.add_tea_attributes(tea_attributes_hash)
+    tea_attributes_hash.each do |attribute, value|
+      self.send(attribute,value)
+    end
   end
 
   def self.all

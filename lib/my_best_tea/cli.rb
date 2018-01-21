@@ -6,7 +6,6 @@ class CLI
   attr_accessor :input
 
   def call
-    Scraper.scrape_tea_page
     puts ""
     puts "Welcome to My Best Tea!"
     puts ""
@@ -15,6 +14,7 @@ class CLI
 
   def start
     list_tea
+    Scraper.create_tea_from_url
     print_tea
     goodbye
   end
@@ -23,6 +23,7 @@ class CLI
     puts ""
     puts "Here are delicious teas that can be found around the world:"
     puts ""
+    Scraper.scrape_from_index_page
     Tea.all.each do |tea|
       puts tea.name
     end
