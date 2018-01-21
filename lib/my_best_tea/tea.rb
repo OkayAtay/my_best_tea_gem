@@ -13,14 +13,12 @@ attr_accessor :name, :url, :description, :preparation, :subtypes
     @@all << self
   end
 
-  def self.create_from_collection(tea_array)
-
-  end
-
-  def self.add_tea_attributes(tea_attributes_hash)
-    tea_attributes_hash.each do |attribute, value|
-      self.send(attribute,value)
-    end
+  def self.print_tea(tea)
+    binding.pry
+    puts tea.name
+    puts tea.description
+    puts tea.preparation
+    puts tea.subtypes
   end
 
   def self.all

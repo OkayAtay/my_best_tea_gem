@@ -14,7 +14,6 @@ class CLI
 
   def start
     list_tea
-    Scraper.create_tea_from_url
     print_tea
     goodbye
   end
@@ -36,15 +35,12 @@ class CLI
     while input != "exit"
       input = gets.strip.downcase
       case input
-        when "tea 1"
-          puts ""
-          puts "more information about tea 1"
-        when "tea 2"
-          puts ""
-          puts "more information on tea 2"
-        when "tea 3"
-          puts ""
-          puts "more information on tea 3"
+        when "black"
+          Tea.print_tea(input)
+        when "oolang"
+          Tea.print_tea(input)
+        when "green"
+          Tea.print_tea(input)
       end
     end
   end
