@@ -14,7 +14,8 @@ class CLI
 
   def start
     list_tea
-    print_tea
+    input = nil
+    print_tea(input)
     goodbye
   end
 
@@ -28,19 +29,21 @@ class CLI
     end
   end
 
-  def print_tea
+  def print_tea(input)
     puts ""
     puts "Please choose a tea to explore or type exit to leave the program"
     puts ""
+    Tea.set_attributes
+    input = gets.strip.downcase
     while input != "exit"
-      input = gets.strip.downcase
-      case input
-        when "black"
-          Tea.print_tea(input)
-        when "oolang"
-          Tea.print_tea(input)
-        when "green"
-          Tea.print_tea(input)
+      binding.pry
+      Tea.all.each do |t|
+        if t == input
+          puts t.name
+          puts t.description
+          puts t.preparation
+          puts t.subtypes
+        end
       end
     end
   end

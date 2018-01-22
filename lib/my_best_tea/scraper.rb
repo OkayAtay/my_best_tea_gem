@@ -18,7 +18,6 @@ attr_accessor :name, :url, :description, :preparation, :subtypes
       tea = Tea.new(tea, url)
       i+=2
     end
-    binding.pry
   end
 
   def self.create_tea_from_url

@@ -13,12 +13,8 @@ attr_accessor :name, :url, :description, :preparation, :subtypes
     @@all << self
   end
 
-  def self.print_tea(tea)
-    binding.pry
-    puts tea.name
-    puts tea.description
-    puts tea.preparation
-    puts tea.subtypes
+  def self.set_attributes
+    Scraper.create_tea_from_url
   end
 
   def self.all
