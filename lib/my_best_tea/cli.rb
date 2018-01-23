@@ -38,7 +38,7 @@ class CLI
     while input != "exit"
       binding.pry
       Tea.all.each do |t|
-        if t == input
+        if t.name == input
           puts t.name
           puts t.description
           puts t.preparation
