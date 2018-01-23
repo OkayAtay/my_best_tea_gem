@@ -6,52 +6,52 @@ class CLI
   attr_accessor :input
 
   def call
+    Scraper.scrape_from_index_page
     puts ""
     puts "Welcome to My Best Tea!"
     puts ""
+    Tea.set_attributes
     start
   end
 
   def start
     list_tea
     input = nil
-    print_tea(input)
+    input = gets.strip.downcase
+    if input != 'exit'
+      print_tea(input)
+      start
+    end
     goodbye
   end
 
   def list_tea
-    Scraper.scrape_from_index_page
     puts ""
     puts "Here are delicious teas that can be found around the world:"
     puts ""
     Tea.all.each do |tea|
       puts tea.name
     end
-  end
-
-  def print_tea(input)
     puts ""
     puts "Please choose a tea to explore or type exit to leave the program"
     puts ""
-    Tea.set_attributes
-    input = gets.strip.downcase
-    while input != "exit"
-      #binding.pry
+  end
+
+  def print_tea(input)
       Tea.all.each do |t|
         if t.name == input
-          puts "Name: #{t.name}"
           puts ""
-          puts "Description: #{t.description}"
+          puts "Learn more about #{t.name} tea below!"
           puts ""
-          puts "Preparation: #{t.preparation}"
+          puts "Description: \n #{t.description}"
           puts ""
-          puts "Subtypes: #{t.subtypes}"
+          puts "Preparation: \n #{t.preparation}"
+          puts ""
+          puts "Subtypes: \n #{t.subtypes}"
           puts ""
         end
       end
-      print_tea(input)
     end
-  end
 
   def goodbye
     puts "Thanks for using My Best Tea -- Happy Sipping!"
