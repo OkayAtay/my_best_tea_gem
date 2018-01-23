@@ -20,10 +20,10 @@ class CLI
   end
 
   def list_tea
+    Scraper.scrape_from_index_page
     puts ""
     puts "Here are delicious teas that can be found around the world:"
     puts ""
-    Scraper.scrape_from_index_page
     Tea.all.each do |tea|
       puts tea.name
     end
@@ -36,15 +36,20 @@ class CLI
     Tea.set_attributes
     input = gets.strip.downcase
     while input != "exit"
-      binding.pry
+      #binding.pry
       Tea.all.each do |t|
         if t.name == input
-          puts t.name
-          puts t.description
-          puts t.preparation
-          puts t.subtypes
+          puts "Name: #{t.name}"
+          puts ""
+          puts "Description: #{t.description}"
+          puts ""
+          puts "Preparation: #{t.preparation}"
+          puts ""
+          puts "Subtypes: #{t.subtypes}"
+          puts ""
         end
       end
+      print_tea(input)
     end
   end
 

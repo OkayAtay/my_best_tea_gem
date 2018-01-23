@@ -23,8 +23,8 @@ attr_accessor :name, :url, :description, :preparation, :subtypes
   def self.create_tea_from_url
     Tea.all.each do |tea|
       tea_page = Nokogiri::HTML(open(tea.url))
-        tea.description = tea_page.css(".col-main .std p")[0..1].text,
-        tea.preparation = tea_page.css(".col-main .std p")[2].text + tea_page.css(".col-main .std ul").text,
+        tea.description = tea_page.css(".col-main .std p")[0..1].text
+        tea.preparation = tea_page.css(".col-main .std p")[2].text + tea_page.css(".col-main .std ul").text
         tea.subtypes = tea_page.css(".col-main .std p")[5..9].text
     end
   end
